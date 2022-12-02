@@ -98,9 +98,9 @@ class ProductsController extends Controller
         $product_data = Produto::where('name', '=', $name)->get();
         
         $provider = Provider::find($product_data[0]->providers_id);
-        dd($provider);
-
-        return view('display this');
+        
+        print_r($provider);
+        return view('products.product_list_show', ['product' => $product_data, 'provider' => $provider]);
     }
 
     /**

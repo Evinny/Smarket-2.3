@@ -65,16 +65,12 @@ class MarketsController extends Controller
     //requer: (search) vazio ou não para fazer a busca filtrada
     public function index(request $request){
         
-
         $list_data = Market::orwhere('name', 'like', '%'.$request->input('search').'%' )
         ->orwhere('cnpj', 'like', '%'.$request->input('search').'%' )
         ->orwhere('address', 'like', '%'.$request->input('search').'%' )
         ->orwhere('type', 'like', '%'.$request->input('search').'%' )
         ->paginate(5);
         
-        
-        
-
         return view('markets.market_list_main', ['Ldata' => $list_data, 'request' => $request->all()]);
     
     }
