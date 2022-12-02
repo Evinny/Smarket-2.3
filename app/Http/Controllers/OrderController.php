@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Market;
 use App\Models\product_market;
-
+use App\Models\product_market_log;
 class OrderController extends Controller
 {
     /**
@@ -99,23 +99,71 @@ class OrderController extends Controller
                 
                 
                 
-                $product_upd = Produto::where('name', 'like', '%'.$request->product_name.'%')
-                    ->update(['amount_stocked' => strval($product['amount_stocked'] - $request->product_amount),
-                        'amount_in_markets' => strval($product['amount_in_markets'] + $request->product_amount)
-                ]); //after the checks, now it updates the amount in stock and in markets to be according,
-                    //only does that
+                
+                
+                $repeated_entry = Product_Market::where('produto_id', '=', $product->id)
+                ->where('market_id', '=', $market->id)->first();
+                
+                $repeated_entry_update = $repeated_entry;
+                $repeated_entry->get();
 
                 
-                product_market::create(['produto_id' => $product['id'],
-                    'market_id' => $market['id'], //saves the info ghatered to the product_market relationship
+               
+
+                if($repeated_entry->count() != 0)
+                {
+                    print_r('true');
+                    
+                    
+                    
+                    
+                    $repeated_entry_update->update(['amount_requested' => $repeated_entry->amount_requested + $request->product_amount,
+                        'amount_left' => $repeated_entry->amount_requested + $request->product_amount,
+                        
+                        
+                    ]);
+                }
+                else
+                {
+                    print_r('false');
+                        
+                        product_market::create(['produto_id' => $product['id'],
+                        'market_id' => $market['id'], //saves the info ghatered to the product_market relationship
+                        'amount_requested' => $request->product_amount, //table
+                        'amount_left' => $request->product_amount,
+                        'amount_sold' => '0'
+                        
+                    ]);
+                }
+                
+                
+                
+                
+                
+                    
+                
+                
+                $product_upd = Produto::where('name', 'like', '%'.$request->product_name.'%')
+                ->update(['amount_stocked' => strval($product['amount_stocked'] - $request->product_amount),
+                'amount_in_markets' => strval($product['amount_in_markets'] + $request->product_amount)
+                    ]); //after the checks, now it updates the amount in stock and in markets to be according,
+                        //only does that
+                
+                
+                $total_price = $product->price * $request->product_amount;
+                product_market_log::create(['produto_id' => $product['id'],
+                    'market_id' => $market['id'], //saves the info ghatered to the product_market_log logs
                     'amount_requested' => $request->product_amount, //table
                     'amount_left' => $request->product_amount,
-                    'amount_sold' => '0'
-
+                    'amount_sold' => '0',
+                    'total_price' => $total_price
+                
                 ]);
+                
+                
 
-
-        
+                
+                
     }
 
     /**
