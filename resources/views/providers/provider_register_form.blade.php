@@ -79,10 +79,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.home') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -98,17 +99,23 @@
             @endif
 
             <div class="content">
+                
                 <div class="title">
                     Register your Provider Company
                     <hr>
                 </div>
 
                 <div class="links">
+                    
                     <form action='{{ route('provider.store') }}' method='post'>
                         @csrf
+                        {{----}}
                         <input type='text' name='name' placeholder='name'>
+                        {{----}}
                         <input type='text' name='address' placeholder='Address'>
+                        {{----}}
                         <input list="size" name='size' autocomplete='off' placeholder="Company Size">
+                        {{----}}
                         <datalist id="size">
                             <option value="Tiny" >
                             <option value="Small" >
@@ -117,24 +124,23 @@
                             <option value="Farm">
                             <option value="Factory">
                         </datalist>
+                        {{----}}
                         <input type='text' name='type' placeholder='type'>
-                        
                         <br><br>
-                        
+                        {{----}}
                         <button type='sumbmit'> Insert </button>
-
                         <br>
+                        {{----}}
 
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                        <h3>{{ isset($status) ? $status : ''}}</h3>
-                        
-                        
-                        
-                        
                         
                     </form>
+
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+
+                    <h3>{{ isset($status) ? $status : ''}}</h3>
+
                 </div>
             </div>
         </div>

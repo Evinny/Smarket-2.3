@@ -87,59 +87,88 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.products') }}">Go Back</a>
             </div>
+            {{----}}
             <div class="top-right">
             
                 <form action={{route('site.products.list')}} method='post'>
                     @csrf
+                    {{----}}
                     <b>Search for specifics<br>
                     <input type='text' placeholder='Search' name='search'>
+                    {{----}}
                 </form>
+
             </div>
                 
-                <div class="content">
-                    <div class="title m-b-md">
-                    </b>Products list</b>
-                    </div>
-                <b>
-                    <div class="links">
-                        <a href="{{ route('site.markets') }}">Markets</a>
-                        <a href="{{ route('site.products.mass.remove') }}">Mass Remove</a>
-                        <a href="{{ route('site.products') }}">Filters</a>
-                        <hr>
-                    </div>
-                    
-                    <table border='1' width='100%'>
-                        <thead>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Amount in Stock </th>
-                            <th>Amount in market(s)</th>
-                            <th>Price</th>
-                            
-
-                        </thead>
-                        <tbody>
-                            @foreach ($Ldata->all() as $data)
-                                <tr> 
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->details}}</td>
-                                    <td>{{$data->amount_stocked}}</td>
-                                    <td>{{$data->amount_in_markets}}</td>
-                                    <td>{{$data->price}}</td>
-                                    <td><a href ='{{route('site.products.edit.form', $data->id)}}'>Edit</td>
-                                    <td><a href ='{{route('site.products.remove.form', $data->id)}}'>Del</td>
-                                </tr>
-                    
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{$Ldata->appends($request)->links()}}
-                    <center>{{ request()->msg ? 'Deletion successful' : ''}}</center>
+            <div class="content">
+                
+                <div class="title m-b-md">
+                </b>Products list</b>
                 </div>
+
+            <b>
+                <div class="links">
+                    {{----}}
+                    <a href="{{ route('site.markets') }}">Markets</a>
+                    {{----}}
+                    <a href="{{ route('site.products.mass.remove') }}">Mass Remove</a>
+                    {{----}}
+                    <a href="{{ route('site.products') }}">Filters</a>
+                    <hr>
+                    {{----}}
+                </div>
+                
+                <table border='1' width='100%'>
+
+                    <thead>
+
+                        <th>Name</th>
+                        <th>Details</th>
+                        <th>Amount in Stock </th>
+                        <th>Amount in market(s)</th>
+                        <th>Price</th>
+                        
+
+                    </thead>
+
+                    <tbody>
+                        
+                        @foreach ($Ldata->all() as $data)
+                            <tr> 
+                                {{----}}
+                                <td><a href="{{route('site.products.show', [
+                                    'product' => $data->name
+                                ])}}">{{$data->name}}</a></td>
+                                {{----}}
+                                <td>{{$data->details}}</td>
+                                {{----}}
+                                <td>{{$data->amount_stocked}}</td>
+                                {{----}}
+                                <td>{{$data->amount_in_markets}}</td>
+                                {{----}}
+                                <td>{{$data->price}}</td>
+                                {{----}}
+                                <td><a href ='{{route('site.products.edit.form', 
+                                    $data->id)}}'>Edit</td>
+                                {{----}}
+                                <td><a href ='{{route('site.products.remove.form',
+                                    $data->id)}}'>Del</td>
+                                {{----}}
+                            </tr>
+                
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+                
+                {{$Ldata->appends($request)->links()}}
+                <center>{{ request()->msg ? 'Deletion successful' : ''}}</center>
+            </div>
         </div>
     </body>
 </html>

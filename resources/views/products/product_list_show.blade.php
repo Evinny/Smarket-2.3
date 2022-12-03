@@ -87,88 +87,99 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
+            {{----}}
             <div class="top-left">
-                <a href="{{ route('site.markets.list') }}">Go Back</a>
+                <a href="{{ url()->previous() }}">Go Back</a>
             </div>
+            {{----}}
             <div class="top-right">
             
                 
             </div>
                 
-                <div class="content">
-                    <div class="title m-b-md">
-                    </b>{{$product[0]->name}}</b>
-                    </div>
-                <b>
-                    <div class="links">
-                        
-                        <a>cachorro quente nazista</a>
-
-                    </div>
-                    
-                    <hr>
-                    <br>
-                    Details of Product
-                    <br><br>
-                    <table border='1' width='100%'>
-                        <thead>
-                            <th>Description</th>
-                            <th>Amount Requested</address></th>
-                            <th>Amount_left</th>
-                            <th>price</th>
-                            
-                            
-
-                        </thead>
-                        <tbody>
-                            
-                            <tr> 
-                                <td><center>{{$product[0]->details}}</center></td>
-                                <td><center>{{$product[0]->amount_left}}</center></td>
-                                <td><center>{{$product[0]->amount_in_stock}}</center></td>
-                                <td><center>{{$product[0]->price}}</center></td>
-                                
-                                
-                            </tr>
-                    
-                            
-                        </tbody>
-                        
-                    
+            <div class="content">
                 
-                        </tbody>
-                    </table>
-                    <br>
-                    <hr>
-                    <br>
-                    Provider
-                    <br><br>
-                    <table border='1' width='100%'>
-                        <thead>
-                            <th>Name</th>
-                            <th>Provider Address</address></th>
-                            <th>Provider Size</th>
-                            <th>Type of Provider</th>
-                            <th>Products delivered</th>
-                            <th>Products Available</th>
-                            
-                            
+                <div class="title m-b-md">
+                </b>{{$product[0]->name}}</b>
+                </div>
 
-                        </thead>
-                        <tbody>
-                        
-                            <tr> 
-                                <td><center>{{$provider->name}} </a></center></td>
-                                <td><center>{{$provider->address}}</center></td>
-                                <td><center>{{$provider->size}}</center></td>
-                                <td><center>{{$provider->type}}</center></td>
-                                <td><center>{{$provider->products_delivered}}</center></td>
-                                <td><center>{{$provider->products_available}}</center></td>
-                                
-                            </tr>
-                    </form>
+                <b>
+                <div class="links">
                     
+                    <a>Product</a>
+
+                </div>
+
+                <hr><br>
+                Details of Product
+                <br><br>
+
+                <table border='1' width='100%'>
+                    
+                    <thead>
+                        
+                        <th>Description</th>
+                        <th>Amount Requested</address></th>
+                        <th>Amount_left</th>
+                        <th>price</th>
+
+                    </thead>
+
+                    <tbody>
+                        
+                        <tr> 
+                            {{----}}
+                            <td><center>{{$product[0]->details}}</center></td>
+                            {{----}}
+                            <td><center>{{$product[0]->amount_left}}</center></td>
+                            {{----}}
+                            <td><center>{{$product[0]->amount_in_stock}}</center></td>
+                            {{----}}
+                            <td><center>{{$product[0]->price}}</center></td>
+                            {{----}}
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+                <br><hr><br>
+                Provider
+                <br><br>
+
+                <table border='1' width='100%'>
+                    
+                    <thead>
+                        
+                        <th>Name</th>
+                        <th>Provider Address</address></th>
+                        <th>Provider Size</th>
+                        <th>Type of Provider</th>
+                        <th>Products delivered</th>
+                        <th>Products Available</th>
+
+                    </thead>
+
+                    <tbody>
+                    
+                        <tr> 
+                            {{----}}
+                            <td><center>{{$provider->name}} </a></center></td>
+                            {{----}}
+                            <td><center>{{$provider->address}}</center></td>
+                            {{----}}
+                            <td><center>{{$provider->size}}</center></td>
+                            {{----}}
+                            <td><center>{{$provider->type}}</center></td>
+                            {{----}}
+                            <td><center>{{$provider->products_delivered}}</center></td>
+                            {{----}}
+                            <td><center>{{$provider->products_available}}</center></td>
+                            {{----}}
+                        </tr>
+                    
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>

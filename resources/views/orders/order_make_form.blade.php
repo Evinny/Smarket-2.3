@@ -106,51 +106,48 @@
                 <div class="links">
                     <form action='{{ route('order.store') }}' method='post'>
                         @csrf
-                        
+                        {{----}}
                         <input list="market_name" placeholder='Market Name' name='market_name' autocomplete="off">
-                        
+                        {{----}}
                         <datalist id="market_name">
                             
                             @foreach ($market_names as $id => $name)    
+                                {{----}}
                                 <option value='{{$name}}'  >
+                                {{----}}
                             @endforeach
 
                         </datalist>
-
+                        {{----}}
                         <input type='text' name='market_cnpj' placeholder='Market CNPJ'>
-        
-
-                        
-
-
-
+                        {{----}}
                         <input list='product_names' name='product_names' placeholder='Product' autocomplete="off">
+                        {{----}}
                         <datalist id='product_names'>
-                        @foreach ($product_names as $id => $name)
-                            <option value='{{$name}}'  >
-                        @endforeach
-                                <option value='teste'>
-                        
+                           
+                            @foreach ($product_names as $id => $name)
+                                {{----}}
+                                <option value='{{$name}}'  >
+                                {{----}}
+                            @endforeach
+                                
                         </datalist>
-
+                        {{----}}
                         <input type='number' name='product_amount' placeholder='amount'>
-                        
-                        <br><br>
-                        
+                        <br>
+                        {{----}}
+                        <br>
                         <button type='sumbmit'> Insert </button>
-
+                        {{----}}
                         <br>
 
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                        <h3>{{ isset($status) ? $status : ''}}</h3>
-                        {{session('status')}}
-                        
-                        
-                        
-                        
                     </form>
+                    
+                    @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                    @endforeach
+                        
+                    <h3>{{session('status')}}</h3>
                 </div>
             </div>
         </div>

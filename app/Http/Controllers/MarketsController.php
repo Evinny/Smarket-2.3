@@ -86,7 +86,7 @@ class MarketsController extends Controller
         $products = Product_Market::where('market_id', '=', $id)->get();
         
         $products_names = [];
-        
+        $products_prices = [];
         $i = 0;
         //cria um array com todos os nomes dos produtos pertencentes ao mercado escolhido
         foreach($products as $product){
@@ -96,10 +96,17 @@ class MarketsController extends Controller
             
             array_push($products_names, $temp['name']);
             
+            array_push($products_prices, $temp['price']);
+            
             $i = $i+1;
         }
         
-        return view('markets.market_list_show', ['order_history' => $products, 'names' => $products_names, 'market' => $market]);
+        return view('markets.market_list_show', [
+            'order_history' => $products, 
+            'names' => $products_names, 
+            'market' => $market,
+            'products_prices' => $products_prices,
+        ]);
 
     }
     //recupera o mercado escolhido pra edição atravez do id no url, e retorna a view de edição 

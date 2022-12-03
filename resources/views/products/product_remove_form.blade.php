@@ -87,55 +87,72 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.products.list') }}">Go Back</a>
             </div>
+            {{----}}
             <div class="top-right">
             
                 
             </div>
                 
                 <div class="content">
+
                     <div class="title m-b-md">
                     </b>Delete Product: {{$Ldata->pluck('name')}}?</b>
                     </div>
+
                 <b>
+                    
                     <div class="links">
-                        
                         <hr>
                     </div>
                     
                     <table border='1' width='100%'>
+                        
                         <thead>
+                            
                             <th>Name</th>
                             <th>Details</th>
                             <th>Amount in Stock </th>
                             <th>Amount in market(s)</th>
                             <th>Price</th>
-                            
 
                         </thead>
+
                         <tbody>
+
                             @foreach ($Ldata->all() as $data)
+                                
                                 <tr> 
-                                    
+                                    {{----}}
                                     <td><center>{{$data->name}}</center></td>
+                                    {{----}}
                                     <td><center>{{$data->details}}</center></td>
+                                    {{----}}
                                     <td><center>{{$data->amount_stocked}}</center></td>
+                                    {{----}}
                                     <td><center><center>{{$data->amount_in_markets}}</center></td>
+                                    {{----}}
                                     <td><center>{{$data->price}}</center></td>
-                                    
+                                    {{----}}
                                 </tr>
                     
                             @endforeach
+
                         </tbody>
+
                     </table>
+
                     <form action={{route('site.products.remove')}} method='post'>
                         @csrf
                         <br>
+                        {{----}}
                         <input  type='hidden'  name='product_id' value='{{$id}}'>
+                        {{----}}
                         <button style=height:30px;width:80px;font-size:16pt; type='sumbmit'> Yes </button><br>
+                        {{----}}
                     </form>
                     
             </div>

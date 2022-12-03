@@ -91,22 +91,25 @@
             <div class="top-left">
                 <a href="{{ route('site.markets.list') }}">Go Back</a>
             </div>
+
             <div class="top-right">
             
                 
             </div>
                 
                 <div class="content">
+                    
                     <div class="title m-b-md">
                     </b>Delete Market: {{$Ldata->pluck('name')}}?</b>
                     </div>
+
                 <b>
                     <div class="links">
-                        
                         <hr>
                     </div>
                     
                     <table border='1' width='100%'>
+                        
                         <thead>
                             <th>Name</th>
                             <th>address</address></th>
@@ -116,26 +119,36 @@
                             
 
                         </thead>
+
                         <tbody>
+
                             @foreach ($Ldata->all() as $data)
                                 <tr> 
-                                    
+                                    {{----}}
                                     <td><center>{{$data->name}}</center></td>
+                                    {{----}}
                                     <td><center>{{$data->address}}</center></td>
+                                    {{----}}
                                     <td><center>{{$data->type}}</center></td>
+                                    {{----}}
                                     <td><center><center>{{$data->cnpj}}</center></td>
-                                    
-                                    
+                                    {{----}}       
                                 </tr>
                     
                             @endforeach
+
                         </tbody>
+
                     </table>
-                    <form action={{route('site.markets.remove')}} method='post'>
-                        @csrf
-                        <br>
-                        <input  type='hidden'  name='market_id' value='{{$id}}'>
-                        <button style=height:30px;width:80px;font-size:16pt; type='sumbmit'> Yes </button><br>
+
+                        <form action={{route('site.markets.remove')}} method='post'>
+                            @csrf
+                            <br>
+                            {{----}}
+                            <input  type='hidden'  name='market_id' value='{{$id}}'>
+                            {{----}}
+                            <button style=height:30px;width:80px;font-size:16pt; type='sumbmit'> Yes </button><br>
+                            {{----}}
                     </form>
                     
             </div>

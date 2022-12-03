@@ -79,10 +79,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.markets') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -98,6 +99,7 @@
             @endif
 
             <div class="content">
+                
                 <div class="title">
                     Insert Market
                     <hr>
@@ -106,20 +108,25 @@
                 <div class="links">
                     <form action='{{ route('site.markets.insert') }}' method='post'>
                         @csrf
+                        {{----}}
                         <input type='text' name='name' placeholder='Market Name'>
+                        {{----}}
                         <input type='text' name='cnpj' placeholder='Market CNPJ'>
+                        {{----}}
                         <input type='text' name='address' placeholder='Market Address'>
+                        {{----}}
                         <input type='text' name='type' placeholder='Market type'>
-                        
+                        {{----}}
                         <br><br>
                         
                         <button type='sumbmit'> Insert </button>
-
+                        {{----}}
                         <br>
 
                         @foreach ($errors->all() as $error)
                             <li>{{$error}}</li>
                         @endforeach
+                        {{----}}
                         <h3>{{ isset($status) ? $status : ''}}</h3>
                         
                         

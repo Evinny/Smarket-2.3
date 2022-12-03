@@ -79,10 +79,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.products') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -98,46 +99,52 @@
             @endif
 
             <div class="content">
+                
                 <div class="title">
                     Record Item
                     <hr>
                 </div>
 
                 <div class="links">
+                    
                     <form action='{{ route('site.products.record') }}' method='post'>
                         @csrf
+                        {{----}}
                         <input type='text' name='name' placeholder='Item Name' value={{old('name')}}>
+                        {{----}}
                         <input type='text' name='details' placeholder='Item Details' value={{old('details')}}>
+                        {{----}}
                         <input type='number' name='amount_stocked' placeholder='Amount in Stock' value={{old('amount_stocked')}}>
+                        {{----}}
                         <input type='number' name='amount_in_markets' placeholder='Amount in markets' value={{old('amount_in_markets')}}>
+                        {{----}}
                         <input type='number' name='price' placeholder='Item Price' value={{old('price')}}><br>
-                        
+                        {{----}}
                         <input list='Providers_name' name='provider_name' placeholder='Provider' autocomplete="off">
+                        {{----}}
                         <datalist id='Providers_name'>
+                            
                             @foreach ($provider_names as $id => $name)
+                                {{----}}
                                 <option value='{{$name}}'  >
+                                {{----}}
                             @endforeach
-                            
-                            
-
-
-
-
-                            </datalist>
-                            
-                            <button type='sumbmit'> Record </button><br>
-                            
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                        <h3>{{ isset($status) ? $status : ''}}</h3>
                         
-                        {{session('status')}}
-                        
+                        </datalist>
+                        {{----}}    
+                        <button type='sumbmit'> Record </button><br>
+                        {{----}}
                         
                         
                         
                     </form>
+                   
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                    
+                    <h3>{{session('status')}}</h3>
+
                 </div>
             </div>
         </div>

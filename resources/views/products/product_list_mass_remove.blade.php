@@ -87,23 +87,29 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.products.list') }}">Go Back</a>
             </div>
+            {{----}}
             <div class="top-right">
             
                 <form action={{route('site.products.mass.remove')}} method='post'>
                     @csrf
+                    {{----}}
                     <b>Search for specifics<br>
                     <input type='text' placeholder='Search' name='search'>
+                    {{----}}
                 </form>
+
             </div>
                 
                 <div class="content">
+
                     <div class="title m-b-md">
                     </b>Products list</b>
                     </div>
+
                 <b>
                     <div class="links">
                         <a href="{{ route('site.markets') }}">Markets</a>
@@ -113,35 +119,57 @@
                     </div>
                     
                     <table border='1' width='100%'>
+
                         <thead>
+
                             <th>Name</th>
                             <th>Details</th>
                             <th>Amount in Stock </th>
                             <th>Amount in market(s)</th>
                             <th>Price</th>
                             
-
                         </thead>
+
                         <tbody>
+                            
                             @foreach ($Ldata->all() as $data)
                                 <tr> 
+                                    {{----}}
                                     <td>{{$data->name}}</td>
+                                    {{----}}
                                     <td>{{$data->details}}</td>
+                                    {{----}}
                                     <td>{{$data->amount_stocked}}</td>
+                                    {{----}}
                                     <td>{{$data->amount_in_markets}}</td>
+                                    {{----}}
                                     <td>{{$data->price}}</td>
+                                    {{----}}
                                     <td><a href ='{{route('site.products.edit.form', $data->id)}}'>Edit</td>
-                                    <td><form action={{route('site.products.remove')}} method='post'>
+                                    {{----}}
+                                    <td>
+
+                                        <form action={{route('site.products.remove')}} method='post'>
                                             @csrf
+                                            {{----}}
                                             <input type='hidden' name='product_id' value={{$data->id}}>
+                                            {{----}}
                                             <button type='sumbit'>Del</button>
-                                        </form></td>
+                                            {{----}}
+                                        </form>
+
+                                    </td>
+
                                 </tr>
                     
                             @endforeach
+
                         </tbody>
+
                     </table>
+
                     {{$Ldata->appends($request)->links()}}
+                    
                     <center>{{ isset($msg) ? $msg : ''}}</center>
             </div>
         </div>

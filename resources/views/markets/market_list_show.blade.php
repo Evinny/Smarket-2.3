@@ -97,9 +97,11 @@
             </div>
                 
                 <div class="content">
+                    
                     <div class="title m-b-md">
                     </b>{{$market}}</b>
                     </div>
+
                 <b>
                     <div class="links">
                         
@@ -108,25 +110,32 @@
                     
                     <table border='1' width='100%'>
                         <thead>
+                            
                             <th>Name</th>
                             <th>Amount Requested</address></th>
-                            <th>Amount_left</th>
+                            <th>In Stock</th>
                             <th>Amount_Sold</th>
-                            
-                            
-
+                            <th>price</th>
+                        
                         </thead>
-                        History
+                        Inventory
+                        
                         <tbody>
                             @foreach ($order_history as $data)
                                 <tr> 
-                                    <td><center><a href="{{route('site.products.show', 
-                                        ['product' => $names[$loop->index] ]) }}"> 
-                                            {{$names[$loop->index]}} </a></center></td>
-                                    <td><center>{{$data->amount_left}}</center></td>
-                                    <td><center>{{$data->amount_sold}}</center></td>
+                                    {{----}}
+                                    <td><center><a href="{{route('site.products.show', [
+                                        'product' => $names[$loop->index] 
+                                    ])}}">      {{$names[$loop->index]}} </a></center></td>
+                                    {{----}}
                                     <td><center>{{$data->amount_requested}}</center></td>
-                                    <td><center><center></center></td>
+                                    {{----}}
+                                    <td><center>{{$data->amount_left}}</center></td>
+                                    {{----}}
+                                    <td><center>{{$data->amount_sold}}</center></td>
+                                    {{----}}
+                                    <td><center>{{$products_prices[$loop->index]}}</center></td>
+                                    {{----}}
                                     
                                     
                                 </tr>

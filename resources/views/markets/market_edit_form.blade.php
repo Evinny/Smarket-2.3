@@ -70,10 +70,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.markets.list') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,25 +90,35 @@
             @endif
 
             <div class="content">
+                
                 <div class="title m-b-md">
                     Editing... {{$current_data->name}}.
                 </div>
+
                 <b><hr>
                 <div class="links">
+                    
                     <form action='{{ route('site.markets.edit', ['id' => $current_data->id]) }}' method='post'>
                         @csrf
                         @method('put')
+                        {{----}}
                         <input type='text' name='name' placeholder='{{$current_data->name}}'>
+                        {{----}}
                         <input type='text' name='address' placeholder='{{$current_data->address}}'>
+                        {{----}}
                         <input type='text' name='type' placeholder='{{$current_data->type}}'>
+                        {{----}}
                         <input type='text' name='cnpj' placeholder='{{$current_data->cnpj}}'>
-                        
+                        {{----}}
                         <br>
                         <button type='sumbmit'> Save </button><br>
+                        {{----}}
                         @foreach ($errors->all() as $error)
                             <li>{{$error}}</li>
                         @endforeach
+                        {{----}}
                         <h3>{{ isset($status) ? $status : ''}}</h3>
+
                 </div>
             </div>
         </div>

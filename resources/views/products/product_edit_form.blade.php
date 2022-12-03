@@ -70,10 +70,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.products.list') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,26 +90,38 @@
             @endif
 
             <div class="content">
+                
                 <div class="title m-b-md">
                     Editing... {{$current_data->name}}.
                 </div>
+
                 <b><hr>
                 <div class="links">
+                    
                     <form action='{{ route('site.products.edit', ['id' => $current_data]) }}' method='post'>
                         @csrf
                         @method('put')
-                        
+                        {{----}}
                         <input type='text' name='name' placeholder='{{$current_data->name}}'>
+                        {{----}}
                         <input type='text' name='details' placeholder='{{$current_data->details}}'>
+                        {{----}}
                         <input type='number' name='amount_stocked' placeholder='{{$current_data->amount_stocked}}'>
+                        {{----}}
                         <input type='number' name='amount_in_markets' placeholder='{{$current_data->amount_in_markets}}'>
+                        {{----}}
                         <input type='number' name='price' placeholder='{{$current_data->price}}'><br>
+                        {{----}}
                         <br>
                         <button type='sumbmit'> Save </button><br>
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                        <h3>{{ isset($status) ? $status : ''}}</h3>
+                        {{----}}
+                    </form>
+                        
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+
+                    <h3>{{ isset($status) ? $status : ''}}</h3>
                 </div>
             </div>
         </div>

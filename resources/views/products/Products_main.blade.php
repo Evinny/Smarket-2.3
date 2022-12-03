@@ -70,10 +70,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            {{----}}
             <div class="top-left">
                 <a href="{{ route('site.home') }}">Go Back</a>
             </div>
-            
+            {{----}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,14 +90,17 @@
             @endif
 
             <div class="content">
+                
                 <div class="title m-b-md">
                     Products
                 </div>
 
                 <div class="links">
+                    {{----}}
                     <a href="{{ route('site.products.list') }}">List</a>
+                    {{----}}
                     <a href="{{ route('site.products.record.form') }}">Record</a>
-                    
+                    {{----}}
                 </div>
             </div>
         </div>

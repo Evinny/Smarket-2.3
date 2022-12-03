@@ -91,24 +91,34 @@
             <div class="top-left">
                 <a href="{{ route('site.markets') }}">Go Back</a>
             </div>
+            
             <div class="top-right">
             
                 <form action={{route('site.markets.mass.remove')}} method='post'>
                     @csrf
+                    {{----}}
                     <b>Search for specifics<br>
                     <input type='text' placeholder='Search' name='search'>
+                    {{----}}
                 </form>
+
             </div>
                 
                 <div class="content">
+                    
                     <div class="title m-b-md">
                     </b>Markets list</b>
                     </div>
+
                 <b>
                     <div class="links">
+                        {{----}}
                         <a href="{{ route('site.products') }}">Products</a>
+                        {{----}}
                         <a href="{{ route('site.markets.list') }}">Undo</a>
+                        {{----}}
                         <a href="{{ route('site.products') }}">Filters</a>
+                        {{----}}
                         <hr>
                     </div>
                     
@@ -126,23 +136,37 @@
                             
                             @foreach ($Ldata->all() as $data)
                                 <tr> 
+                                    {{----}}
                                     <td>{{$data->name}}</td>
+                                    {{----}}
                                     <td>{{$data->address}}</td>
+                                    {{----}}
                                     <td>{{$data->type}}</td>
+                                    {{----}}
                                     <td>{{$data->cnpj}}</td>
+                                    {{----}}
                                     <td><a href ='{{route('site.markets.edit.form', $data->id)}}'>Edit</td>
-                                    <td><form action={{route('site.markets.remove')}} method='post'>
-                                        @csrf
-                                        <input type='hidden' name='market_id' value={{$data->id}}>
-                                        <button type='sumbit'>Del</button>
-                                        </form></td>
+                                    {{----}}
+                                    <td>
+                                        <form action={{route('site.markets.remove')}} method='post'>
+                                            @csrf
+                                            {{----}}
+                                            <input type='hidden' name='market_id' value={{$data->id}}>
+                                            {{----}}
+                                            <button type='sumbit'>Del</button>
+                                            {{----}}
+                                        </form>
+                                    </td>
+                                    {{----}}
                                 </tr>
                     
                             @endforeach
+
                         </tbody>
                     </table>
                     
                     {{$Ldata->appends($request)->links()}}
+
             </div>
         </div>
     </body>

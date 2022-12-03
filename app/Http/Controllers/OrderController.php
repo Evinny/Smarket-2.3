@@ -80,10 +80,10 @@ class OrderController extends Controller
                     return redirect()->route('order.create')->with(['status' => "Market doesn't exist"]);
                 }
             
-                $market = $market[0]; //simplifies things, instead of $market[0]['name'], its just $market['name']
+            $market = $market[0]; //simplifies things, instead of $market[0]['name'], its just $market['name']
                 
                 
-                $product = Produto::where('name', 'like', '%'.$request->product_name.'%')->get();
+            $product = Produto::where('name', 'like', '%'.$request->product_names.'%')->get();
                 //searches of the product name in the table produtos
 
                 if($product->isEmpty()){ //checkes if there was found any product with corresponding name
@@ -93,39 +93,29 @@ class OrderController extends Controller
                 elseif($product[0]['amount_stocked'] < $request->product_amount){
                     return redirect()->route('order.create')->with(['status' => "Sorry, we only have x of that product"]);
                 } //checks if the order quantity is greater than the amount stocked
-
-                $product = $product[0];
+            
+            $product = $product[0];
+                
+            $repeated_entry = Product_Market::where('produto_id', '=', $product->id)
+            ->where('market_id', '=', $market->id)->get();
+            
+            $repeated_entry_update = Product_Market::where('produto_id', '=', $product->id)
+            ->where('market_id', '=', $market->id);
+            
+            $repeated_entry = $repeated_entry[0];
+            
                 
                 
-                
-                
-                
-                
-                $repeated_entry = Product_Market::where('produto_id', '=', $product->id)
-                ->where('market_id', '=', $market->id)->first();
-                
-                $repeated_entry_update = $repeated_entry;
-                $repeated_entry->get();
-
-                
-               
-
-                if($repeated_entry->count() != 0)
+                if($repeated_entry->count())
                 {
-                    print_r('true');
-                    
-                    
-                    
-                    
+                
                     $repeated_entry_update->update(['amount_requested' => $repeated_entry->amount_requested + $request->product_amount,
                         'amount_left' => $repeated_entry->amount_requested + $request->product_amount,
-                        
                         
                     ]);
                 }
                 else
                 {
-                    print_r('false');
                         
                         product_market::create(['produto_id' => $product['id'],
                         'market_id' => $market['id'], //saves the info ghatered to the product_market relationship
@@ -143,7 +133,7 @@ class OrderController extends Controller
                     
                 
                 
-                $product_upd = Produto::where('name', 'like', '%'.$request->product_name.'%')
+                $product_upd = Produto::where('name', 'like', '%'.$request->product_names.'%')
                 ->update(['amount_stocked' => strval($product['amount_stocked'] - $request->product_amount),
                 'amount_in_markets' => strval($product['amount_in_markets'] + $request->product_amount)
                     ]); //after the checks, now it updates the amount in stock and in markets to be according,
@@ -162,7 +152,7 @@ class OrderController extends Controller
                 
                 
 
-                
+                return redirect()->route('order.create')->with(['status' => "Order Successfull"]);
                 
     }
 

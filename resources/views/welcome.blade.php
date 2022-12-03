@@ -80,16 +80,21 @@
             @endif
 
             <div class="content">
+                
                 <div class="title m-b-md">
                     Welcome, User
                 </div>
 
                 <div class="links">
+                    {{----}}
                     <a href="{{ route('site.products') }}">Products</a>
+                    {{----}}
                     <a href="{{ route('site.markets') }}">Markets</a>
+                    {{----}}
                     <a href="{{ route('order.create')}}">Get Order</a>
+                    {{----}}
                     <a href="{{ route('provider.create')}}">Get pro</a>
-                    
+                    {{----}}
                 </div>
             </div>
         </div>

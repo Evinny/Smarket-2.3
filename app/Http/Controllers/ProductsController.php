@@ -99,7 +99,7 @@ class ProductsController extends Controller
         
         $provider = Provider::find($product_data[0]->providers_id);
         
-        print_r($provider);
+        
         return view('products.product_list_show', ['product' => $product_data, 'provider' => $provider]);
     }
 
